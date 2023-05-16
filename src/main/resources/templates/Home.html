@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeLeaf-extras-springsecurity5">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home Page</title>
+        <link rel="stylesheet" th:href="@{/css/Home.css}" />
+        <script th:src="@{/JS/yourScript.js}"></script>
+
+    </head>
+    <body>
+    <!-- Start Landing Page -->
+    <div sec:authorize="isAuthenticated()" align="center">
+        Welcome <span sec:authentication="name">username</span>
+    </div>
+    &nbsp;
+    <div class="landing-page">
+        <header>
+
+            <div class="container">
+                <a href="#" class="logo">smart <b>Panel</b></a>
+                <ul class="links">
+                    <li><a th:href="@{/}" href="#">Home</a></li>
+                    <li><a th:href="@{/AboutUs}" href="#">About Us</a></li>
+                    <li><a th:href="@{/Panels}" href="#">Products</a></li>
+                    <li><a th:href="@{/panelCost}" href="#">Cost</a></li>
+                    <li><a th:href="@{/Admin}" href="#">Admin</a></li>
+                    <li><a th:href="@{/Register}" href="#">Register Here</a></li>
+                </ul>
+            </div>
+        </header>
+        <div class="content">
+            <div class="container">
+                <div class="info">
+                    <h1>The Future of Energy is Here</h1>
+                    <p>We are Smart Panel  industry to save  Environment in context of Climate change mitigation  and use of renewable resources based in Rwanda. We build and link Most iconic Solar panels and Batteries for years,
+                        for latest design trends</p>
+                    <button ><a th:href="@{/AllPanels}">Best Panel Products</a></button>
+                </div>
+                <div class="image">
+                    <img src="../img/tariff-free-panels-1.png">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Landing Page -->
+
+
+    <section class="hero" >
+        <h1><span>Mission & Vission</span>of Our Company</h1>
+        <h2> Our Mission is to make the renewable energy efficient  again with Strong  useful products.
+            Our mission and vission is <span><q>Progressive Strong Energy for Environment</q></span></h2>
+    </section>
+    <section class="section" >
+        <div class="wrapper">
+            <h2 class="section__title" >SOME OF DISTRIBUTOR</h2>
+            <p class="section__intro">
+
+                Finding a solar panel installer is easy with Bark. Enter your location above and we’ll do all the legwork to get you quotes from local solar panel installers fast and free.
+
+            </p>
+            <div class="box__grid">
+                <article class="box"><a class="box__content" th:href="@{/new}"><i class="fa fa-lightbulb-o fa-3x"></i>
+                    <h3 class="box__title">Post details</h3>
+                    <p>Post details of your solar panel requirements in moments, and Find Out How We Can Help.</p><span class="box__more">Post Panel<i class="fa fa-arrow-right"></i></span></a></article>
+                <article class="box"><a class="box__content" th:href="@{/Images}"><i class="fa fa-code fa-3x"></i>
+                    <h3 class="box__title">Join professionals</h3>
+                    <p>Upload Here Image We will find solar panel installers in your area and do the legwork to contact them on your behalf.</p><span class="box__more">Find more<i class="fa fa-arrow-right"></i></span></a></article>
+                <article class="box"><a class="box__content" href="#"><i class="fa fa-mobile fa-3x"></i>
+                    <h3 class="box__title">Compare</h3>
+                    <p>Review proposals, compare solar panel installation prices and choose the best local solar panel installers for your job.</p><span class="box__more">Read more<i class="fa fa-arrow-right"></i></span></a></article>
+            </div>
+        </div>
+        &nbsp;
+        <a class="btn" th:href="@{/Distributor}">SEE BEST DISTRIBUTOR</a>
+    </section>
+    <div class="section section--cta">
+        <div class="wrapper">
+            <h2 class="section__title">Reach Out to Us</h2>
+            &nbsp;
+
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Logout" class="btn" />
+            </form>
+            &nbsp;&nbsp;
+            <p class="section__intro">We are a company dedicated to providing top-quality products and services.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div><i class="fas fa-globe fa-2x"></i> English (United States)</div>
+            <ul>
+                <li><a href="#">Sitemap</a></li>
+                <li><a href="#">Contact Microsoft</a></li>
+                <li><a href="#">Privacy & cookies</a></li>
+                <li><a href="#">Terms of use</a></li>
+                <li><a href="#">About our ads</a></li>
+                <li><a href="#">&copy; TresorXavier 2023</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    </body>
+</html>

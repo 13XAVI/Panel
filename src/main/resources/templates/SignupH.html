@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head >
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-compatible" content="ie-edge">
+  <title data-i18n="name">Sign Up Page</title>
+  <link rel="stylesheet" th:href="@{/css/Signup.css}"  />
+  <script th:src="@{/JS/Signup.js}"></script>
+</head>
+
+<body>
+<div class="container right-panel-active">
+  <!-- Sign Up -->
+  <div class="container__form container--signup">
+    <form action="#"th:action="@{/process_Register}" method="post" th:object="${user}"  class="form" id="form1"onsubmit="validateForm()">
+      <h2 class="form__title">Sign Up</h2>
+      <input type="text" placeholder="User" class="input" id="username" th:field="*{username}" required/>
+      <input type="email" placeholder="Email" class="input" id="email-" th:field="*{email}" onkeyup="isValidEmail()" required />
+      <input type="password" placeholder="Password" class="input" id="passwords" th:field="*{password}" required/>
+      <button class="btn">Sign Up</button>
+    </form>
+  </div>
+
+  <!-- Overlay -->
+  <div class="container__overlay">
+    <div class="overlay">
+      <div class="overlay__panel overlay--left">
+<!--        <button class="btn" id="signIn">Sign In</button>-->
+      </div>
+      <div class="overlay__panel overlay--right">
+        <button class="btn" id="signUp">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>

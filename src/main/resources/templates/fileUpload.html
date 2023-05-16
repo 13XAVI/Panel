@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="stylesheet" th:href="@{/css/images.css}" />
+</head>
+<body>
+<!-- Card layout -->
+<div class="card">
+  <img th:src="${fileUpload.downloadUri}" alt="Uploaded Image">
+  <h2 th:text="${fileUpload.filename}"></h2>
+  <p th:text="${fileUpload.size}"></p>
+  <!-- Other card details -->
+</div>
+</body>
+</html>

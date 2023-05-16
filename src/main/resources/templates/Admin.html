@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Dashbord html and css</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css"
+          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <<link rel="stylesheet" th:href="@{/css/Admin.css}"  />
+    <link rel="stylesheet" th:ref="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/css/List.css}" />
+</head>
+<body>
+<input type="checkbox" id="menu" name="">
+<div class="sidebar">
+    <div class="sidebar-brand">
+        <h2><span class="fa fa-user-o"></span>Smart Pamel</h2>
+    </div>
+
+    <div class="sidebar-menu">
+        <ul>
+            <li>
+                <a href="" class="active"><span class="fa fa-home"></span><span>Home</span></a>
+            </li>
+            <li>
+                <a href=""><span class="fa fa-tasks"></span><span>Tasks</span></a>
+            </li>
+            <li>
+                <a th:href="@{/new}"><span class="fa fa-th-large"></span><span>Add New Panel</span></a>
+            </li>
+<!--            <li>-->
+<!--                <a href=""><span class="fa fa-line-chart"></span><span>Statistics</span></a>-->
+<!--            </li>-->
+            <li>
+                <a th:href="@{/list_users}"><span class="fa fa-address-book"></span><span>Smart Panel Users</span></a>
+            </li>
+            <li>
+                <a th:href="@{/HomePage}"><span class="fa fa-clipboard"></span><span>Projects</span></a>
+            </li>
+<!--            <li>-->
+<!--                <a href=""><span class="fa fa-money"></span><span>Bilans</span></a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href=""><span class="fa fa-registered"></span><span>Registered</span></a>-->
+<!--            </li>-->
+
+            <li>
+                <a href=""><span class="fa fa-user"></span><span>Contacts</span></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+<div class="content">
+
+    <header>
+        <p><label for="menu"><span class="fa fa-bars"></span></label><span class="accueil">Home</span></p>
+
+        <div class="search-wrapper">
+            <span class="fa fa-search"></span>
+            <input type="search" name="" placeholder="recherche" />
+        </div>
+
+        <div class="user-wrapper" id="dropdown">
+            <div>
+                <h4>Alassane</h4>
+                <small>Admin</small>
+            </div>
+
+            <img src="images/pp.jpg" width="30" height="30" class="logo-admin">
+            <div class="dropdown-content">
+                <p>My profile</p>
+                <p>Logout</p>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+        <div class="cards">
+            <div class="card-single">
+                <div>
+                    <h2>2.000.000</h2>
+                    <small>sold</small>
+                </div>
+                <div>
+                    <span class="fa fa-shopping-cart"></span>
+                </div>
+            </div>
+
+            <div class="card-single">
+                <div>
+                    <h2>+30</h2>
+                    <small>Stock</small>
+                </div>
+                <div>
+                    <span class="fa fa-newspaper-o"></span>
+                </div>
+            </div>
+            <div class="card-single">
+                <div>
+                    <h2>58</h2>
+                    <small>Fournisseur</small>
+                </div>
+                <div>
+                    <span class="fa fa-outdent"></span>
+                </div>
+            </div>
+            <div class="card-single">
+                <div>
+                    <h2>20k</h2>
+                    <small>Users</small>
+                </div>
+                <div>
+                    <span class="fa fa-group"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="composant">
+            <div align="center">
+
+                <h1>List of Smart Panels</h1>
+                <div th:if="${message}" >
+                    [[${message}]]
+                </div>
+
+                <a th:href="@{/list_Hotel}" class="fa fa-arrow-right">View List</a>
+
+<!--                <table border="1">-->
+<!--                    <thead>-->
+<!--                    <tr>-->
+<!--                        <th>id</th>-->
+<!--                        <th>type</th>-->
+<!--                        <th>Max Power Output</th>-->
+<!--                        <th>dimensions</th>-->
+<!--                        <th>weight</th>-->
+<!--                        <th>price</th>-->
+<!--                        <th>warrant</th>-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                    <tr th:each="panel :${listProductSpec}">-->
+<!--                        <td th:text="${panel.id}">Panel Id</td>-->
+<!--                        <td th:text="${panel.type}">Type</td>-->
+<!--                        <td th:text="${panel.dimensions}">Dimension</td>-->
+<!--                        <td th:text="${panel.weight}">Weight</td>-->
+<!--                        <td th:text="${panel.price}">Price</td>-->
+<!--                        <td th:text="${panel.warrant}">Warrant</td>-->
+<!--                        <td>-->
+<!--                            <a th:href="@{'/edit/'+${panel.id}}">Edit</a>-->
+<!--                            <a th:href="@{'/delete/'+${panel.id}}">Delete</a>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--                <div>&nbsp;</div>-->
+<!--&lt;!&ndash;                <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <th:block th:if="${totalPages != null}">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <th:block th:each="page : ${#numbers.sequence(1, totalPages)}">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <a th:href="@{/page/{page}(page=${page})}" th:text="${page}"></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </th:block>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </th:block>&ndash;&gt;-->
+<!--&lt;!&ndash;                    Total Items : [[${totalItems}]] - Page [[${currentPage}]] of [[${totalPages}]]&ndash;&gt;-->
+<!--&lt;!&ndash;                    &nbsp;- &nbsp;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a th:if="${currentPage > 1}" th:href="@{'/page/1'}">First</a>&nbsp;&nbsp;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span th:unless="${currentPage >1}">First</span>&nbsp;&ndash;&gt;-->
+<!--&lt;!&ndash;                    &nbsp; &nbsp;&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <a th:if="${currentPage > 1}" th:href="@{'/page/'+${currentPage - 1}}">Previous</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span th:unless="${currentPage > 1}">Previous</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    &nbsp; &nbsp;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span th:each="i : ${#numbers.sequence(1,totalPages)}">&ndash;&gt;-->
+<!--&lt;!&ndash;            <a th:if="${i !=currentPage}" th:href="@{'/page/'+${i}}">[[${i}]]</a>&ndash;&gt;-->
+<!--&lt;!&ndash;            <span th:unless="${i!= currentPage}">[[${i}]]</span>&ndash;&gt;-->
+<!--&lt;!&ndash;            &nbsp; &nbsp;&ndash;&gt;-->
+<!--&lt;!&ndash;            </span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a th:if="${currentPage< totalPages}" th:href="@{'/page/'+${currentPage + 1}}">Next</a>&nbsp;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span th:unless="${currentPage < totalPages}">Next</span>&nbsp;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a th:if="${currentPage< totalPages}" th:href="@{'/page/'+${totalPages}}">Last</a>&nbsp;&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span th:unless="${currentPage < totalPages}">Last</span>&nbsp;&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+            </div>
+
+
+            <div class="stock">
+                <div class="case">
+                    <div class="header-case">
+                        <h2>Subscribers</h2>
+
+                    </div>
+                    <div class="body-case">
+                        <div class="all-users">
+                            <div class="infos">
+                                <img src="images/pp.jpg" width="30" height="30">
+                                <div>
+                                    <h4>Omar</h4>
+                                    <small>Embulant</small>
+                                </div>
+                            </div>
+
+                            <div class="user-contact">
+                                <span class="fa fa-facebook"></span>
+                                <span class="fa fa-whatsapp"></span>
+                                <span class="fa fa-phone"></span>
+                            </div>
+                        </div>
+
+                        <div class="all-users">
+                            <div class="infos">
+                                <img src="images/pp.jpg" width="30" height="30">
+                                <div>
+                                    <h4>Omar</h4>
+                                    <small>Embulant</small>
+                                </div>
+                            </div>
+
+                            <div class="user-contact">
+                                <span class="fa fa-facebook"></span>
+                                <span class="fa fa-whatsapp"></span>
+                                <span class="fa fa-phone"></span>
+                            </div>
+                        </div>
+
+                        <div class="all-users">
+                            <div class="infos">
+                                <img src="images/pp.jpg" width="30" height="30">
+                                <div>
+                                    <h4>Omar</h4>
+                                    <small>Embulant</small>
+                                </div>
+                            </div>
+
+                            <div class="user-contact">
+                                <span class="fa fa-facebook"></span>
+                                <span class="fa fa-whatsapp"></span>
+                                <span class="fa fa-phone"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="all-users">
+                            <div class="infos">
+                                <img src="images/pp.jpg" width="30" height="30">
+                                <div>
+                                    <h4>Omar</h4>
+                                    <small>Embulant</small>
+                                </div>
+                            </div>
+
+                            <div class="user-contact">
+                                <span class="fa fa-facebook"></span>
+                                <span class="fa fa-whatsapp"></span>
+                                <span class="fa fa-phone"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn">More<span class="fa fa-arrow-right"></span></button>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+</div>
+</body>
+</html>
+</body>
+</html>

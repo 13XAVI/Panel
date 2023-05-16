@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Product  </title>
+  <link rel="stylesheet" th:href="@{/css/NewProd.css}" />
+    <link rel="stylesheet" th:href="@{/css/sliders.css}" />
+</head>
+<body>
+<div th:replace="/header.html :: header"></div>
+<div align="center" class="container">
+  <div class="image-section">
+      <img src="../img/solar1.jpg" alt="Product image">
+  </div>
+<!--  <form  th:action="@{/edit}" th:object="${productSpec}" method="post" class="form-section">-->
+  <form th:action="@{/Save}" th:object="${panelSpec}" method="post" class="form-section">
+      <table>
+          <tr>
+              <td>Panel Id</td>
+              <td><input th:field="*{id}" type="text"/></td>
+          </tr>
+          <tr>
+              <td>Panel Type</td>
+              <td><input th:field="*{type}" type="text"/></td>
+          </tr>
+          <tr>
+              <td>Maximum power Output</td>
+              <td><input th:field="*{maxpowerOutput}" type="text"/></td>
+          </tr>
+          <tr>
+              <td>Dimensions</td>
+              <td><input th:field="*{dimensions}" type="text"/></td>
+          </tr>
+          <tr>
+              <td>Weight</td>
+              <td><input th:field="*{weight}" type="text"/></td>
+          </tr>
+          <tr>
+              <td>Price</td>
+              <td><input th:field="*{price}" type="text"/></td>
+          </tr>
+          <tr>
+              <td>Warranty</td>
+              <td><input th:field="*{warrant}" type="text"/></td>
+          </tr>
+
+          <tr>
+              <td colspan="2"><button type="submit" />Save</td>
+          </tr>
+      </table>
+  </form>
+
+</div>
+</body>
+</html>

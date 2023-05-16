@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- header section... -->
+<ul>
+  <li th:each="productSpec : ${hotels}">
+    <h2 th:text="${productSpec.name}"></h2>
+    <p th:text="${productSpec.address}"></p>
+    <p th:text="${productSpec.description}"></p>
+  </li>
+</ul>
+</body>
+
+</html>

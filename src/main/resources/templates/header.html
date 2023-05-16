@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}" />
+</head>
+<body>
+
+<nav>
+  <div class="container" >
+
+    <ul class="menu">
+      <li><a th:href="@{/index}">Home</a></li>
+      <li><a th:href="@{/about}">About</a></li>
+      <li><a th:href="@{/services}">Services</a></li>
+      <li><a href="">Log Out</a></li>
+    </ul>
+    <div class="search">
+      <form action="/search" method="GET">
+        <input type="text" name="query" placeholder="Search...">
+        <button type="submit">Go</button>
+      </form>
+    </div>
+  </div>
+</nav>
+</body>
+</html>

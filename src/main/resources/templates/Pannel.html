@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Panels</title>
+    <link rel="stylesheet" th:href="@{/css/List.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+<div align="center">
+
+    <h1>List of Best Panels </h1>
+    &nbsp;
+    <div th:if="${message}" >
+        [[${message}]]
+    </div>
+    &nbsp;
+    <form th:action="@{/AllPanels }" >
+        Filter:
+        <input type="text" name="keyword" th:value="${keyword}" required/>
+        &nbsp;
+        <input type="submit" value="Search">
+        &nbsp;
+        <input type="button" value="Clear" onclick="clearFilter()">
+
+
+    </form>
+    &nbsp;&nbsp;
+    <table border="1">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>type</th>
+            <th>Max Power Output</th>
+            <th>dimensions</th>
+             <th>weight</th>
+             <th>price</th>
+             <th>warrant</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="panel :${listProductSpec}">
+            <td th:text="${panel.id}">Panel Id</td>
+            <td th:text="${panel.type}">Type</td>
+            <td th:text="${panel.dimensions}">Dimension</td>
+            <td th:text="${panel.weight}">Weight</td>
+            <td th:text="${panel.price}">Price</td>
+            <td th:text="${panel.warrant}">Warrant</td>
+            <td>
+                <a th:href="@{'/edit/'+${panel.id}}">Edit</a>
+                <a th:href="@{'/delete/'+${panel.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div>&nbsp;</div>
+    <div>
+        Total Items : [[${totalItems}]] - Page [[${currentPage}]] of [[${totalPages}]]
+        &nbsp;- &nbsp;
+            <a th:if="${currentPage > 1}" th:href="@{'/page/1'}">First</a>&nbsp;&nbsp;
+            <span th:unless="${currentPage >1}">First</span>&nbsp;
+            &nbsp; &nbsp;
+            <a th:if="${currentPage > 1}" th:href="@{'/page/'+${currentPage - 1}}">Previous</a>
+            <span th:unless="${currentPage > 1}">Previous</span>
+            &nbsp; &nbsp;
+            <span th:each="i : ${#numbers.sequence(1,totalPages)}">
+            <a th:if="${i !=currentPage}" th:href="@{'/page/'+${i}}">[[${i}]]</a>
+            <span th:unless="${i!= currentPage}">[[${i}]]</span>
+            &nbsp; &nbsp;
+            </span>
+       <a th:if="${currentPage< totalPages}" th:href="@{'/page/'+${currentPage + 1}}">Next</a>&nbsp;
+            <span th:unless="${currentPage < totalPages}">Next</span>&nbsp;
+        <a th:if="${currentPage< totalPages}" th:href="@{'/page/'+${totalPages}}">Last</a>&nbsp;
+            <span th:unless="${currentPage < totalPages}">Last</span>&nbsp;
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    function clearFilter(){
+        window.location = '/AllPanels';
+    }
+</script>
+</html>
+
+

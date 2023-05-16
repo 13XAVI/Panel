@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users List</title>
+    <link rel="stylesheet" th:href="@{/css/List.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+<body>
+<div align="center">
+    <div>
+        <form th:action="@{/logout}" method="post">
+            <h1>User Logged : <b th:text="${#request.userPrincipal != null ? #request.userPrincipal.principal.fullName : 'Guest'}"></b></h1>
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+    <h1>List of User</h1>
+    <a href="new">Create New User</a>
+    <br><br>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>User ID</th>
+             <th>User Name</th>
+            <th>Email</th>
+            <th>Password</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="users :${listUsers}">
+            <td th:text="${users.id}">User Id</td>
+            <td th:text="${users.username}">Username</td>
+            <td th:text="${users.email}">Email</td>
+            <td th:text="${users.password}"> Password</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+
+

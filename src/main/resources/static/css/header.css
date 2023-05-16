@@ -1,0 +1,88 @@
+nav {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  margin-right: 20px;
+}
+
+.menu li:last-child {
+  margin-right: 0;
+}
+
+.menu li a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+}
+
+.menu li a:hover {
+  color: #0066CC;
+}
+.search {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex; /* Add this to make the search box and button align horizontally */
+}
+
+.search input[type="text"] {
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  margin-right: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.search button {
+  background-color: #0066CC;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+
+
+.button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+
+}
+
+.button:hover {
+  background-color: #0052A3;
+}
+.hero .container .button {
+  margin-top: 20px; /* Add some spacing between the button and the text */
+}

@@ -1,0 +1,117 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    font-family: Montserrat, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-size: cover;
+
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 80%;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+tr {
+    border: 1px solid black;
+}
+
+.footer {
+    margin: 25px;
+    text-align: center;
+    color: grey;
+    font-family: Montserrat; sans-serif;
+}
+
+.form__labelText {
+   max-width: 150px;
+   width: 100%;
+   display: inline-block;
+   margin-right: 5px;
+}
+
+.form__input {
+    border: 1px dotted #ccc;
+    padding: 10px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.form__input--readonly {
+    background-color: #ccc;
+}
+
+.form__field--currency {
+    border: 1px dotted #ccc;
+    padding: 10px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.form__button {
+    width: 200px;
+    padding: 10px;
+    background-color: hsl(203, 54%, 27%);
+    border: none;
+    color:antiquewhite;
+    font-weight: 900;
+    justify-content:center;
+    align-center:center;
+}
+
+.form__button:hover {
+    background-color: hsl(202, 37%, 40%);
+}
+
+.form__fieldset {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.form {
+    margin-top: 20px;
+}
+
+.form__legend {
+    background-color: hsl(203, 54%, 27%);
+    color: antiquewhite;
+    padding: 10px;
+    font-weight: 900;
+}
+
+.form__field:required {
+    border-color: #777;
+}
+
+.form__field:invalid {
+background-color:antiquewhite;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*, ::after, ::before {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: ;
+}
+

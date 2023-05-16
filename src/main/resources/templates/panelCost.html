@@ -1,0 +1,108 @@
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cost Estimation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+          integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/container.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/List.css}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+            rel="stylesheet">
+</head>
+
+<body>
+<div class="container">
+
+    <div align="center">
+
+        <h1>Cost of solar panels for different house sizes</h1>
+        <div th:if="${message}">
+            [[${message}]]
+        </div>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Property size</th>
+                <th>Annual electricity usage</th>
+                <th>Number of solar panels</th>
+                <th>Battery size</th>
+                <th>Solar-plus-storage system cost</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td >1-2 bedrooms</td>
+                <td >Ty1800 kWh</td>
+                <td >6</td>
+                <td >4 kWh</td>
+                <td >160,000</td>
+            </tr>
+            <tr >
+                <td >1-2 bedrooms</td>
+                <td >1800 kWh</td>
+                <td >10</td>
+                <td >8 kWh</td>
+                <td >190,000</td>
+            </tr>
+            <tr >
+                <td >5 bedrooms</td>
+                <td >4300 kWh</td>
+                <td >14</td>
+                <td >9.8 kWh</td>
+                <td >220,000Frw</td>
+            </tr>
+            </tbody>
+        </table>
+        <div>&nbsp;</div>
+        <div id="result">
+            <p>these prices are based on Microgeneration Certification Scheme (MCS) cost data (March 2023),
+                the average price of electricity (April 2023), and Ofgem's latest typical domestic consumption values (2021).
+                Total costs may increase with more complex installations. The above estimates do not include the cost of a solar battery.</p>
+        </div>
+
+        <h1>Solar Panel Calculator</h1>
+
+        <br><br>
+        <script th:src="@{/JS/calculator.js}"></script>
+
+
+
+    </div>
+
+    <div class="calculator">
+        <h2>Solar Panel Cost Calculator</h2>
+        <div class="input-group">
+            <label for="num-panels">Number of Solar Panels:</label>
+            <input type="number" id="num-panels" min="1" step="1">
+        </div>
+        <div class="input-group">
+            <button onclick="calculateCosts()">Calculate Cost</button>
+            <button onclick="resetCalculator()">Reset</button>
+        </div>
+        <div class="result">
+            <label>Estimated Cost:</label>
+            <span id="cost"></span>
+        </div>
+    </div>
+
+    </fieldset>
+
+</div>
+
+
+</body>
+
+</html>
