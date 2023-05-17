@@ -1,12 +1,10 @@
 package SmartPanel.panel.Reservation.Controller;
 
-import SmartPanel.panel.Reservation.SmartPanel.Model.Contactus;
-import SmartPanel.panel.Reservation.SmartPanel.Model.fileUpload;
+import SmartPanel.panel.Reservation.SmartPanel.Model.*;
 import SmartPanel.panel.Reservation.SmartPanel.Repositories.ContactusRepository;
 import SmartPanel.panel.Reservation.SmartPanel.Repositories.PanelRepository;
+import SmartPanel.panel.Reservation.SmartPanel.Repositories.RoleRepository;
 import SmartPanel.panel.Reservation.SmartPanel.Service.PanelService;
-import SmartPanel.panel.Reservation.SmartPanel.Model.PanelUser;
-import SmartPanel.panel.Reservation.SmartPanel.Model.ProductSpec;
 import SmartPanel.panel.Reservation.SmartPanel.Repositories.UserRepository;
 import SmartPanel.panel.Reservation.fileUtil.fileDownload;
 import SmartPanel.panel.Reservation.fileUtil.uploadUtil;
@@ -53,6 +51,8 @@ public class AppController {
     private PanelRepository panelRepository;
     @Autowired
     private JavaMailSender mailSender;
+    @Autowired
+    private RoleRepository roles;
 
 
     @GetMapping("/HomePage")
@@ -83,11 +83,13 @@ public class AppController {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             String encoded = encoder.encode(user.getPassword());
             user.setPassword(encoded);
+            PanelRoles customer = new PanelRoles("CUSTOMER");
+            user.getRoles().add(customer);
             userRepository.save(user);
 
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(user.getEmail());
-            message.setSubject("Welcome to our hotel!");
+            message.setSubject("Welcome to Smart Panel!");
             message.setText("Dear " + user.getUsername() + ",\n\nThank you for registering with us. We look forward to serving you.\n\nBest regards,\nThe SmartPanel Team");
             mailSender.send(message);
         }
@@ -224,6 +226,19 @@ public class AppController {
     public String deleteUser(@PathVariable(name = "id")Long id){
         service.delete(id);
         return "redirect:/list_users";
+    }
+    @RequestMapping("/grantRole")
+    public String grantRoleToUser(@RequestParam("userId") Long userId, @RequestParam("roleId") Long roleId) {
+        PanelUser user = userRepository.findById(userId).orElse(null);
+        PanelRoles role = roles.findById(roleId).orElse(null);
+
+        if (user == null || role == null) {
+            return "Invalid user or role ID";
+        }
+        user.addRole(role);
+        userRepository.save(user);
+
+        return "Role granted successfully to the user";
     }
 
     @PostMapping("/fileUpload")

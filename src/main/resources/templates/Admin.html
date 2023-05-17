@@ -47,9 +47,9 @@
 <!--            <li>-->
 <!--                <a href=""><span class="fa fa-money"></span><span>Bilans</span></a>-->
 <!--            </li>-->
-<!--            <li>-->
-<!--                <a href=""><span class="fa fa-registered"></span><span>Registered</span></a>-->
-<!--            </li>-->
+            <li>
+                <a th:href="@{/grantRole}" onclick="grantRolePopup()"><span class="fa fa-registered"></span><span>Grant Role</span></a>
+            </li>
 
             <li>
                 <a href=""><span class="fa fa-user"></span><span>Contacts</span></a>
@@ -67,12 +67,12 @@
 
         <div class="search-wrapper">
             <span class="fa fa-search"></span>
-            <input type="search" name="" placeholder="recherche" />
+            <input type="search" name="" placeholder="search" />
         </div>
 
         <div class="user-wrapper" id="dropdown">
             <div>
-                <h4>Alassane</h4>
+                <h4>Profile</h4>
                 <small>Admin</small>
             </div>
 
@@ -134,7 +134,7 @@
                     [[${message}]]
                 </div>
 
-                <a th:href="@{/list_Hotel}" class="fa fa-arrow-right">View List</a>
+                <a th:href="@{/list_users}" class="fa fa-arrow-right">View List</a>
 
 <!--                <table border="1">-->
 <!--                    <thead>-->
@@ -274,5 +274,29 @@
 </div>
 </body>
 </html>
+
+<script type="text/javascript">
+function grantRolePopup() {
+  // Display the popup and retrieve entered values
+  var userId = prompt("Enter user ID:");
+  var roleId = prompt("Enter role ID:");
+
+  $.ajax({
+    url: "/grantRole",
+    type: "GET",
+    data: { userId: userId, roleId: roleId },
+    success: function(response) {
+      alert(response);
+    },
+    error: function(xhr, status, error) {
+      alert("Error: " + error);
+    }
+  });
+}
+
+var grantRoleButton = document.getElementById("grantRoleButton");
+grantRoleButton.addEventListener("click", grantRolePopup);
+
+</script>
 </body>
 </html>

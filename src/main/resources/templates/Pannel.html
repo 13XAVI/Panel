@@ -49,7 +49,7 @@
             <td th:text="${panel.warrant}">Warrant</td>
             <td>
                 <a th:href="@{'/edit/'+${panel.id}}">Edit</a>
-                <a th:href="@{'/delete/'+${panel.id}}">Delete</a>
+                <a th:href="@{'/delete/'+${panel.id}}" onclick="deleteItem(itemId)">Delete</a>
             </td>
         </tr>
         </tbody>
@@ -80,6 +80,15 @@
     function clearFilter(){
         window.location = '/AllPanels';
     }
+    function deleteItem(itemId) {
+  var confirmed = confirm("Are you sure you want to delete this item?");
+  if (confirmed) {
+    alert("Item deleted successfully!");
+  } else {
+    alert("Delete operation cancelled.");
+  }
+}
+
 </script>
 </html>
 

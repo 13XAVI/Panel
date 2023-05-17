@@ -24,7 +24,7 @@ public class PanelService {
     }
     public List<ProductSpec> list(String keyword){
         if(keyword != null){
-            return panelRepo.findAllById(keyword);
+            return panelRepo.findAllPanelById(keyword);
         }
         return panelRepo.findAll();
     }
