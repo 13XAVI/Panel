@@ -54,7 +54,10 @@ public class AppController {
     @Autowired
     private RoleRepository roles;
 
-
+    @GetMapping("/")
+    public String home() {
+        return "Home";
+    }
     @GetMapping("/HomePage")
     public String viewHomePage(@Validated HttpSession session,Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
