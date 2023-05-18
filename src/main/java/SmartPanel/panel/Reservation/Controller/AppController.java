@@ -31,7 +31,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
@@ -57,7 +56,7 @@ public class AppController {
 
 
     @GetMapping("/HomePage")
-    public  RedirectView viewHomePage(@Validated HttpSession session,Model model){
+    public String viewHomePage(@Validated HttpSession session,Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = ((UserDetails) auth.getPrincipal()).getUsername();
         session.setAttribute("email", email);
@@ -70,7 +69,7 @@ public class AppController {
         // Add the authenticated user to the model
         model.addAttribute("user", user);
         model.addAttribute("email", email);
-        return new RedirectView("/Home");
+        return "Home";
     }
 
     @GetMapping("/Register")
