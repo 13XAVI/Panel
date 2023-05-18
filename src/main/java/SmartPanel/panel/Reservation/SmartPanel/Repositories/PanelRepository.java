@@ -9,12 +9,13 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface  PanelRepository extends PagingAndSortingRepository<ProductSpec,Long>,JpaRepository<ProductSpec,Long> {
-    @Query(value = "SELECT p FROM ProductSpec  WHERE p.type LIKE %?1%" +
-            " OR p.maxpower_output LIKE %?1%" +
-            "OR  p.dimensions LIKE %?1%" +
-            "OR p.weight LIKE %?1% " +
-            " OR p.price LIKE %?1%" +
-            "OR p.warrant LIKE %?1%",nativeQuery = true)
-    public List<ProductSpec> findAllPanelById( String Keyword);
+    @Query(value = "SELECT p FROM ProductSpec p WHERE p.type LIKE %:keyword%" +
+            " OR p.maxpowerOutput LIKE %:keyword%" +
+            " OR p.dimensions LIKE %:keyword%" +
+            " OR p.weight LIKE %:keyword%" +
+            " OR p.price LIKE %:keyword%" +
+            " OR p.warrant LIKE %:keyword%", nativeQuery = false)
+    List<ProductSpec> findAllPanelById(@Param("keyword") String keyword);
+
 
 }
