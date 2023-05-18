@@ -57,12 +57,7 @@ public class AppController {
 
 
     @GetMapping("/HomePage")
-    public RedirectView home() {
-        return new RedirectView("/Home");
-    }
-
-    @GetMapping("/HomePage")
-    public String viewHomePage(@Validated HttpSession session,Model model){
+    public  RedirectView viewHomePage(@Validated HttpSession session,Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = ((UserDetails) auth.getPrincipal()).getUsername();
         session.setAttribute("email", email);
@@ -75,7 +70,7 @@ public class AppController {
         // Add the authenticated user to the model
         model.addAttribute("user", user);
         model.addAttribute("email", email);
-        return "Home";
+        return new RedirectView("/Home");
     }
 
     @GetMapping("/Register")
