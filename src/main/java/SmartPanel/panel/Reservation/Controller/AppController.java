@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
@@ -54,6 +55,11 @@ public class AppController {
     @Autowired
     private RoleRepository roles;
 
+
+    @GetMapping("/")
+    public RedirectView home() {
+        return new RedirectView("/Home");
+    }
 
     @GetMapping("/HomePage")
     public String viewHomePage(@Validated HttpSession session,Model model){
