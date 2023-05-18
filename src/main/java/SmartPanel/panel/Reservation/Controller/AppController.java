@@ -56,7 +56,7 @@ public class AppController {
     private RoleRepository roles;
 
 
-    @GetMapping("/")
+    @GetMapping("/HomePage")
     public RedirectView home() {
         return new RedirectView("/Home");
     }
