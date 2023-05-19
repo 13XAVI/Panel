@@ -132,7 +132,26 @@ public class AppController {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            return "redirect:/list_Hotel";
+            return "redirect:/list_user";
+        }
+
+    }
+    @RequestMapping(value = "/Save",method = RequestMethod.POST )
+    public String SavePanel(@Validated @ModelAttribute("productSpec") Contactus contact, RedirectAttributes redirectAttributes , ProductSpec productSpec,PanelUser user,Model model ){
+        try {
+            model.addAttribute("productSpec");
+            service.save(productSpec);
+            redirectAttributes.addFlashAttribute("message","Panel has been saved successfully");
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(user.getEmail());
+            message.setSubject("Welcome to our productSpec!");
+            message.setText("Dear " + user.getUsername() + ",\n\nThank you for registering Panel with us. We look forward to serving you.\n\nBest regards,\nThe SmartPanel Team");
+            mailSender.send(message);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            return "redirect:/Pannel";
         }
 
     }
