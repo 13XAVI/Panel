@@ -58,7 +58,7 @@ public class AppController {
     public String home() {
         return "Home";
     }
-    @GetMapping("/HomePage")
+    @RequestMapping("/")
     public String viewHomePage(@Validated HttpSession session,Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = ((UserDetails) auth.getPrincipal()).getUsername();
