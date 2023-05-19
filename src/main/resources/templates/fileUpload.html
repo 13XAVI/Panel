@@ -6,10 +6,22 @@
 <body>
 <!-- Card layout -->
 <div class="card">
+  <div class="imgPreview hidden">
+    <img class="preview" alt="" src="" />
   <img th:src="${fileUpload.downloadUri}" alt="Uploaded Image">
   <h2 th:text="${fileUpload.filename}"></h2>
   <p th:text="${fileUpload.size}"></p>
   <!-- Other card details -->
+</div>
+  <div class="file-download-form">
+    <h2>File Download</h2>
+    <form action="/downloadFile" method="get">
+      <div class="imgPreview hidden">
+        <img class="preview" alt="" src="" />
+      </div>
+      <input type="text" name="filecode" placeholder="File Code" required>
+      <input type="submit" value="Download">
+    </form>
 </div>
 </body>
 </html>

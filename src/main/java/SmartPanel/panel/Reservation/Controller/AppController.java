@@ -1,13 +1,11 @@
 package SmartPanel.panel.Reservation.Controller;
 
 import SmartPanel.panel.Reservation.SmartPanel.Model.*;
-import SmartPanel.panel.Reservation.SmartPanel.Repositories.ContactusRepository;
-import SmartPanel.panel.Reservation.SmartPanel.Repositories.PanelRepository;
-import SmartPanel.panel.Reservation.SmartPanel.Repositories.RoleRepository;
+import SmartPanel.panel.Reservation.SmartPanel.Repositories.*;
 import SmartPanel.panel.Reservation.SmartPanel.Service.PanelService;
-import SmartPanel.panel.Reservation.SmartPanel.Repositories.UserRepository;
 import SmartPanel.panel.Reservation.fileUtil.fileDownload;
 import SmartPanel.panel.Reservation.fileUtil.uploadUtil;
+import org.apache.tomcat.util.http.fileupload.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
@@ -46,6 +44,8 @@ public class AppController {
     @Autowired
     private UserRepository userRepository;
     @Autowired
+    private FileRepository fileRepo;
+    @Autowired
     private PanelService service;
     @Autowired
     private PanelRepository panelRepository;
@@ -58,7 +58,7 @@ public class AppController {
     public String home() {
         return "Home";
     }
-    @RequestMapping("/")
+    @GetMapping("/HomePage")
     public String viewHomePage(@Validated HttpSession session,Model model){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = ((UserDetails) auth.getPrincipal()).getUsername();
@@ -86,10 +86,9 @@ public class AppController {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             String encoded = encoder.encode(user.getPassword());
             user.setPassword(encoded);
+            userRepository.save(user);
             PanelRoles customer = new PanelRoles("CUSTOMER");
             user.getRoles().add(customer);
-            userRepository.save(user);
-
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(user.getEmail());
             message.setSubject("Welcome to Smart Panel!");
@@ -137,21 +136,27 @@ public class AppController {
 
     }
     @RequestMapping(value = "/Save",method = RequestMethod.POST )
-    public String SavePanel(@Validated @ModelAttribute("productSpec") Contactus contact, RedirectAttributes redirectAttributes , ProductSpec productSpec,PanelUser user,Model model ){
+    public String SavePanel(@Validated Contactus contact,ProductSpec productSpec ,RedirectAttributes redirectAttributes ,PanelUser user,Model model ){
         try {
-            model.addAttribute("productSpec");
-            service.save(productSpec);
+            model.addAttribute("productSpec",productSpec);
+            ProductSpec saved = service.save(productSpec);
             redirectAttributes.addFlashAttribute("message","Panel has been saved successfully");
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(user.getEmail());
-            message.setSubject("Welcome to our productSpec!");
-            message.setText("Dear " + user.getUsername() + ",\n\nThank you for registering Panel with us. We look forward to serving you.\n\nBest regards,\nThe SmartPanel Team");
-            mailSender.send(message);
+            if (user != null && user.getEmail() != null) {
+
+                SimpleMailMessage message = new SimpleMailMessage();
+                message.setTo(user.getEmail());
+                message.setSubject("Welcome to our productSpec!");
+                message.setText("Dear " + user.getUsername() + ",\n\nThank you for registering Panel with us. We look forward to serving you.\n\nBest regards,\nThe SmartPanel Team");
+                mailSender.send(message);
+            } else {
+                System.out.println("invalid Email");
+            }
+
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            return "redirect:/Pannel";
+            return "redirect:/AllPanels";
         }
 
     }
@@ -173,9 +178,9 @@ public class AppController {
     @RequestMapping  ("/AllPanels")
     public String ListProducts( Model model, @Param("keyword")String keyword){
 
-        List<ProductSpec> productSpec = service.list(keyword);
-        model.addAttribute("productSpec", productSpec);
-        model.addAttribute("keyword", keyword);
+        List<ProductSpec> ListKey = service.list(keyword);
+        model.addAttribute("ListKey",ListKey);
+        model.addAttribute("keyword",ListKey);
         return  ListBYPage(model,1);
     }
 
@@ -218,24 +223,7 @@ public class AppController {
         model.addAttribute("productSpec", productSpec);
         return "Products";
     }
-    @RequestMapping(value = "/Save",method = RequestMethod.POST )
-    public String SaveProduct(@RequestBody @Validated @ModelAttribute("productSpec") ProductSpec product, RedirectAttributes redirectAttributes , PanelUser user){
-        try {
-            service.save(product);
-            redirectAttributes.addFlashAttribute("message","Data has been saved successfully");
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(user.getEmail());
-            message.setSubject("Welcome to our productSpec!");
-            message.setText("Dear " + user.getUsername() + ",\n\nThank you for registering with us. We look forward to serving you.\n\nBest regards,\nThe SmartPanel Team");
-            mailSender.send(message);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            return "redirect:/Pannel";
-        }
-
-    }
 
     @RequestMapping ("/edit/{id}")
     public ModelAndView showEditHotel(@PathVariable(name ="id") Long id){
@@ -277,6 +265,8 @@ public class AppController {
         fileUpload.setFilename(fileName);
         fileUpload.setSize(size);
         fileUpload.setDownloadUri("/downloadFile/"+fileCode);
+        fileRepo.save(fileUpload);
+
         return "fileUpload";
     }
 

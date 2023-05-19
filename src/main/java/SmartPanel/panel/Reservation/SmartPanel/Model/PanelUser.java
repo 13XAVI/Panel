@@ -20,9 +20,11 @@ public class PanelUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false )
+    @Column(nullable = false,length = 50,unique = true)
     private String username;
+    @Column(nullable = false,length = 50)
     private String email;
+    @Column(nullable = false,length = 50)
     private String password;
 
     public Set<PanelRoles> getRoles() {

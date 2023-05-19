@@ -18,9 +18,9 @@
     &nbsp;
     <form th:action="@{/AllPanels }" >
         Filter:
-        <input type="text" name="keyword" th:value="${keyword}" required/>
+        <input type="text" name="keyword" placeholder="keyword"  required/>
         &nbsp;
-        <input type="submit" value="Search">
+        <input type="submit" value="Search" onclick="openPopup()">
         &nbsp;
         <input type="button" value="Clear" onclick="clearFilter()">
 
@@ -40,7 +40,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="panel :${listProductSpec}">
+        <tr th:each="panel :${keyword}">
             <td th:text="${panel.id}">Panel Id</td>
             <td th:text="${panel.type}">Type</td>
             <td th:text="${panel.dimensions}">Dimension</td>
@@ -88,6 +88,18 @@
     alert("Delete operation cancelled.");
   }
 }
+
+  function openPopup() {
+    var popup = document.getElementById("popup");
+    popup.style.display = "block";
+  }
+
+  function closePopup() {
+    var popup = document.getElementById("popup");
+    popup.style.display = "none";
+  }
+</script>
+
 
 </script>
 </html>

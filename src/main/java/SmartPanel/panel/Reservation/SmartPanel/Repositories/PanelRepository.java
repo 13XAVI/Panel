@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface  PanelRepository extends PagingAndSortingRepository<ProductSpec,Long>,JpaRepository<ProductSpec,Long> {
+public interface  PanelRepository extends JpaRepository<ProductSpec,Long> {
     @Query(value = "SELECT p FROM ProductSpec p WHERE p.type LIKE %:keyword%" +
             " OR p.maxpowerOutput LIKE %:keyword%" +
             " OR p.dimensions LIKE %:keyword%" +

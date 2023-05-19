@@ -1,17 +1,23 @@
 body{
-    font-family: 'Open Sans', sans-serif;
+     font-family: var(--font-serif);
+      font-size: 1.125rem;
+      font-style: italic;
+      line-height: 1.35;
 }
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    font-family: Montserrat, sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
     background-size: cover;
+     font-family: var(--font-serif);
+      font-size: 1.125rem;
+      font-style: italic;
+      line-height: 1.35;
 
-    font-family: 'Open Sans', sans-serif;
+
 
 }
 
